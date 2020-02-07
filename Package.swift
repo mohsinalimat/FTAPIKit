@@ -1,8 +1,9 @@
 // swift-tools-version:5.1
 
 import PackageDescription
+import Foundation
 
-let package = Package(
+var package = Package(
     name: "FTAPIKit",
     products: [
         .library(
@@ -18,3 +19,11 @@ let package = Package(
             dependencies: ["FTAPIKit"])
     ]
 )
+
+var container: ObjCBool = false
+FileManager.default.fileExists(atPath: "../PromiseKit", isDirectory: &container)
+if container.boolValue == true {
+    package.dependencies += [
+        .package(url: "https://github.com/mxcl/PromiseKit", .upToNextMajor(from: "7.0.0"))
+    ]
+}
