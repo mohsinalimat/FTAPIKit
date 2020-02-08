@@ -20,10 +20,9 @@ var package = Package(
     ]
 )
 
-var container: ObjCBool = false
-FileManager.default.fileExists(atPath: "../PromiseKit", isDirectory: &container)
-if container.boolValue == true {
-    package.dependencies += [
-        .package(url: "https://github.com/mxcl/PromiseKit", .upToNextMajor(from: "7.0.0"))
-    ]
-}
+#if FTAPIKit_Promise
+package.dependencies += [
+    .package(url: "https://github.com/mxcl/PromiseKit", .upToNextMajor(from: "6.0.0"))
+]
+package.targets[0].dependencies.append(.target(name: "PromiseKit"))
+#endif

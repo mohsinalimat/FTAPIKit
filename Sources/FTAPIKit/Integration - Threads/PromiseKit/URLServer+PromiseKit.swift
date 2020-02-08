@@ -1,4 +1,5 @@
-#if canImport(PromiseKit)
+
+#if FTAPIKit_Promise
 import Foundation
 import PromiseKit
     
@@ -11,6 +12,6 @@ public extension URLServer {
     }
     
 }
-    
 #endif
+
 
